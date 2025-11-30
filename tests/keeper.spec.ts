@@ -5,8 +5,10 @@ import { RegistrationPage } from '../src/pages/RegistrationPage';
 import { RequestLoanPage } from '../src/pages/RequestLoanPage';
 import { ForgotInfoPage } from '../src/pages/ForgotInfoPage';
 
-
-test.describe('Keeper tests', () =>
+//Please read:
+// a lot of functuanalitites is broken at the moment I'm writing and running my tests, 
+// but I was able to automate 4 tests as mentioned in the requrements , but some asserts are written for an error (decided to write test cases properly)
+test.describe('Keeper Security tests from Kirill Sakovich', () =>
 {
     const BASE_URL = 'https://parabank.parasoft.com/parabank/index.html';
 
@@ -24,7 +26,6 @@ test.describe('Keeper tests', () =>
         await registrationPage.register();
 
         await expect(page.getByRole('heading', { name: `Welcome ${Env.username}` })).toBeVisible();
-        //Welcome john_doe_test_001
     });
 
     test('Login', async ({ page }) =>
@@ -35,7 +36,7 @@ test.describe('Keeper tests', () =>
 
         await loginPage.login();
 
-        // Error is happening while I'm writing this test, so I can assert only error h1
+        // PLEASSE READ: Error is happening while I'm writing this test, so I can assert only error in h1
         await expect(page.getByRole('heading', { name: 'Error' })).toBeVisible();
     });
 
@@ -69,7 +70,7 @@ test.describe('Keeper tests', () =>
         await page.getByRole('link', { name: 'Request Loan' }).click();
         await requstLoanPage.applyForLoan('1000', '100');
 
-        // Error is happening while I'm writing this test so I can  assert only for an aerror
+        // Error is happening while I'm writing this test so I can  assert only for an error
         await expect(page.getByRole('heading', { name: 'Error' })).toBeVisible();
     });
 

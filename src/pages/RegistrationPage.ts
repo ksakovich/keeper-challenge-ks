@@ -14,7 +14,6 @@ export class RegistrationPage extends BasePage
     private username = this.page.locator('input[name="customer.username"]');
     private password = this.page.locator('input[name="customer.password"]');
     private confirm = this.page.locator('input[name="repeatedPassword"]');
-
     private registerBtn = this.page.getByRole("button", { name: 'Register' });
 
     async register()
@@ -30,8 +29,6 @@ export class RegistrationPage extends BasePage
         await this.username.fill(Env.username);
         await this.password.fill(Env.password);
         await this.confirm.fill(Env.password);
-
         await this.registerBtn.click();
-
     }
 }
